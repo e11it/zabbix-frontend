@@ -28,7 +28,7 @@ RUN    sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
     && sed -i 's/^# *\(ru_RU.UTF-8\)/\1/' /etc/locale.gen \
     && sed -i 's/^# *\(C.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
-    && dpkg-reconfigure locales \
+    && dpkg-reconfigure locales
 
 RUN wget http://repo.zabbix.com/zabbix/3.0/debian/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}-1+jessie_all.deb -O /tmp/zf.deb \
     && dpkg -i /tmp/zf.deb \
