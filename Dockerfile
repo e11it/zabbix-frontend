@@ -4,7 +4,6 @@ MAINTAINER im@e11it.ru
 ENV ZBX_VERSION=3.0.4
 
 ADD sources.list /etc/apt/sources.list
-ADD nginx/conf.d/zabbix.conf /etc/nginx/conf.d/zabbix.conf
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -25,8 +24,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN wget http://repo.zabbix.com/zabbix/3.0/debian/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}-1+jessie_all.deb -O /tmp/zf.deb \
     && dpkg -i /tmp/zf.deb \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /var/run/fpm/
+
+ADD etc/nginx/conf.d/zabbix.conf /etc/nginx/conf.d/zabbix.conf
+ADD etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
 
 VOLUME /etc/nginx/conf.d
+VOLUME /var/run/fpm
 
-#CMD [""]
+CMD ["php5-fpm","-c","/etc/php5/fpm/php.ini","-F","-O"]
