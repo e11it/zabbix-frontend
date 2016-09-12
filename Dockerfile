@@ -32,5 +32,6 @@ ADD etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
 
 VOLUME /etc/nginx/conf.d
 VOLUME /var/run/fpm
+VOLUME /usr/share/zabbix
 
 CMD ["php5-fpm","-c","/etc/php5/fpm/php.ini","-F","-O"]
