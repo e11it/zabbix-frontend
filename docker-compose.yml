@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    nginx-front:
+        restart: always
+        image:
+        depends_on:
+            - zbx-front
+        volumes_from:
+            - zbx-front:ro
+    zbx-front:
+        restart: always
+        image:
+        volumes:
+            - zbx-etc-zabbix:/etc/zabbix
+            - zbx-etc-php5:/etc/php5/fpm
+
+volumes:
+    zbx-etc-zabbix:
+        driver: local
+    zbx-etc-php5:
+        driver: local
+
