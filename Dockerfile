@@ -3,6 +3,7 @@ MAINTAINER im@e11it.ru
 
 ENV ZBX_VERSION=3.0.4
 
+ADD sources.list /etc/apt/sources.list
 ADD nginx/conf.d/zabbix.conf /etc/nginx/conf.d/zabbix.conf
 
 
