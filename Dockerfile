@@ -1,7 +1,8 @@
 FROM debian:jessie
 MAINTAINER im@e11it.ru
 
-ENV ZBX_VERSION=3.0.4
+ENV ZBX_MAIN_VER=3.2
+ENV ZBX_VERSION=3.2.0
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD sources.list /etc/apt/sources.list
@@ -30,7 +31,7 @@ RUN    sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
     && dpkg-reconfigure locales
 
-RUN wget http://repo.zabbix.com/zabbix/3.0/debian/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}-1+jessie_all.deb -O /tmp/zf.deb \
+RUN wget http://repo.zabbix.com/zabbix/${ZBX_MAIN_VER}/debian/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}-1+jessie_all.deb -O /tmp/zf.deb \
     && dpkg -i /tmp/zf.deb \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/run/fpm/
