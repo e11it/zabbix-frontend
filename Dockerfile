@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER im@e11it.ru
 
 ENV ZBX_MAIN_VER=3.2
-ENV ZBX_VERSION=3.2.7   
+ENV ZBX_VERSION=3.2.10
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD sources.list /etc/apt/sources.list
